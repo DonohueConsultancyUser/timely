@@ -1,0 +1,49 @@
+export interface TimelyAccountI {
+  id: number;
+  name: string;
+  color: string;
+  currency: {
+    id: string;
+    name: string;
+    iso_code: string;
+    symbol: string;
+    symbol_first: true;
+  };
+  from: string;
+  max_users: number;
+  seats: number;
+  max_projects: number;
+  plan_id: number;
+  plan_name: string;
+  next_charge: string;
+  start_of_week: number;
+  created_at: number;
+  payment_mode: string;
+  paid: true;
+  company_size: string;
+  plan_code: string;
+  plan_custom: false;
+  appstore_transaction_id: null;
+  owner_id: number;
+  weekly_user_capacity: number;
+  default_work_days: string;
+  default_hour_rate: number;
+  support_email: string;
+  estimated_company_size: null;
+  industry: null;
+  memory_retention_days: number;
+  num_users: number;
+  num_projects: number;
+  active_projects_count: number;
+  total_projects_count: number;
+  capacity: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    formatted: string;
+    total_hours: number;
+    total_seconds: number;
+    total_minutes: number;
+  };
+  status: string;
+}

@@ -1,0 +1,7 @@
+PORT=3000
+TIMELY_REDIRECT_URL=https://fuzzy-pike-twill.cyclic.app/timely/get-tokens
+TIMELY_CLIENT_ID=2IPCRRwWtgCQsTZ0Dh9Q_BIFPMgeCC67LlqvQN43twA
+TIMELY_CLIENT_SECRET=c-J5OJ8QmPwctFkmmGoTcZRbNuNnhFJ8BevFoZh_dOo
+TEAMWORK_TOKEN=twp_B1MG1eAALqD1fS1QTaHh3djd1O8T
+TEAMWORK_BASE_URL=https://vladscompany3.teamwork.com
+TIMELY_BASE_URL=https://api.timelyapp.com
