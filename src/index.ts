@@ -3,7 +3,7 @@ import { envsConfig } from "./configs";
 import { apiRouter } from "./routes/api.router";
 import { IRequest } from "./interfaces";
 import { cronRunner } from "./crones";
-import mongoose from "mongoose";
+import { dataSourse } from "./database/connection";
 
 const app = express();
 
@@ -23,7 +23,11 @@ app.use((err: any, req: IRequest, res: Response, next: NextFunction) => {
 });
 
 app.listen(envsConfig.port, async () => {
-  await mongoose.connect(envsConfig.mongoUrl as string);
+  const database = await dataSourse.initialize();
+  if (database) {
+    console.log("Database conencted");
+  }
+
   console.log(`Port listen: ${envsConfig.port}`);
   cronRunner();
 });

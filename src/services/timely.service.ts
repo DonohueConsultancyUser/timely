@@ -5,7 +5,8 @@ import { TimelyProjectI } from "../interfaces/timely";
 import { TimelyAccountI } from "../interfaces/timely/accounts";
 import { TimelyClientsI } from "../interfaces/timely/clients";
 import { TimelyUsersI } from "../interfaces/timely/users";
-import { TokensDb } from "../models/tokens.moldel";
+import { dataSourse } from "../database/connection";
+import Tokens from "../database/models/tokens.moldel";
 
 const axiosService = axios.create({ baseURL: envsConfig.timelyBaseUrl });
 
@@ -53,7 +54,7 @@ export const timelyService = {
 };
 
 export const getTokens = async (): Promise<IAccessToken> => {
-  const data = await TokensDb.find();
+  const data = await dataSourse.manager.find(Tokens);
   return data[0];
 };
 
@@ -79,9 +80,10 @@ axios.interceptors.response.use(
         const tokens = await getTokens();
         const { data } = await timelyService.refreshToken(tokens.refresh_token);
 
-        await TokensDb.updateOne(
+        await dataSourse.manager.update(
+          Tokens,
           { refresh_token: tokens.refresh_token },
-          { access_toke: data.access_token, refresh_token: data.refresh_token }
+          { access_token: data.access_token, refresh_token: data.refresh_token }
         );
 
         originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
