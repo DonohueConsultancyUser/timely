@@ -210,8 +210,15 @@ export const timelyMiddlewares = {
     try {
       const code = req.query.code as string;
       await dataSourse.manager.delete(Tokens, {});
+      console.log("code", code);
+
       const { data } = await timelyService.getTokens(code);
+      console.log("data", data);
+
       await dataSourse.manager.save(Tokens, { access_token: data.access_token, refresh_token: data.refresh_token });
+      const tokens = await dataSourse.manager.find(Tokens);
+      console.log("tokens", tokens);
+
       next();
     } catch (e) {
       next(e);
