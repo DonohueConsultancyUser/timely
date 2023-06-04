@@ -18,4 +18,10 @@ export const teamworkController = {
 
     res.end();
   },
+
+  archiveProject: (req: Request, res: Response) => {
+    console.log("Project archived successfully");
+
+    res.end();
+  },
 };
