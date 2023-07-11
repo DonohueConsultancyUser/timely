@@ -68,6 +68,8 @@ export const timelyMiddlewares = {
     try {
       console.log("getAccount");
       const { data } = await timelyService.getAccounts();
+      console.log(data);
+
       req.accountId = data[0].id;
       console.log("getAccount", data[0].id);
       next();
