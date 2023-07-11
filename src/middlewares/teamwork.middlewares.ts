@@ -106,4 +106,13 @@ export const teamworkMiddlewares = {
       next(e);
     }
   },
+
+  saveProjectName: async (req: IRequest, res: Response, next: NextFunction) => {
+    try {
+      req.projectName = req.body.project.name;
+      next();
+    } catch (e) {
+      next(e);
+    }
+  },
 };

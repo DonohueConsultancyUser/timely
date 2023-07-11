@@ -32,4 +32,13 @@ teamworkRouter.post(
   teamworkController.updateBudget
 );
 
+teamworkRouter.post(
+  "/archived-project",
+  teamworkMiddlewares.saveProjectName,
+  timelyMiddlewares.getAccount,
+  timelyMiddlewares.getTimelyProjectByName,
+  timelyMiddlewares.archiveProject,
+  teamworkController.archiveProject
+);
+
 export { teamworkRouter };
