@@ -84,8 +84,10 @@ export const timelyMiddlewares = {
         throw new Error("Missing accountId");
       }
       const path = req.body.payload.entity_path;
+      console.log(path);
 
       const { data: createdHours } = await timelyService.getCreatedHours(path, accountId);
+      console.log(createdHours);
 
       if (!createdHours) {
         throw new Error("Created hours not found");
