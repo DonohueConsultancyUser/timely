@@ -20,7 +20,11 @@ export const timelyService = {
   getProjects: (accountId: number): Promise<AxiosResponse<TimelyProjectI[]>> =>
     axiosService.get(`${timelyUrls.version}/${accountId}${timelyUrls.projects}`),
 
-  getCreatedHours: (path: string, accountId: number) => axiosService.get(`${timelyUrls.version}/${accountId}${path}`),
+  getCreatedHours: (path: string, accountId: number) => {
+    console.log(`${timelyUrls.version}/${accountId}${path}`);
+
+    return axiosService.get(`${timelyUrls.version}/${accountId}${path}`);
+  },
 
   getClients: (accountId: number): Promise<AxiosResponse<TimelyClientsI[]>> =>
     axiosService.get(`${timelyUrls.version}/${accountId}${timelyUrls.clients}`),
