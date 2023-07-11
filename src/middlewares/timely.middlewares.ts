@@ -64,8 +64,10 @@ export const timelyMiddlewares = {
 
   getAccount: async (req: IRequest, res: Response, next: NextFunction) => {
     try {
+      console.log("getAccount");
       const { data } = await timelyService.getAccounts();
       req.accountId = data[0].id;
+      console.log("getAccount", data[0].id);
       next();
     } catch (e) {
       next(e);
@@ -74,6 +76,7 @@ export const timelyMiddlewares = {
 
   generateHoursData: async (req: IRequest, res: Response, next: NextFunction) => {
     try {
+      console.log("generateHoursData");
       const accountId = req.accountId;
       if (!accountId) {
         throw new Error("Missing accountId");
@@ -116,6 +119,8 @@ export const timelyMiddlewares = {
         projectName,
       };
       req.hours = hoursDate;
+      console.log("generateHoursData", hoursDate);
+
       next();
     } catch (e) {
       next(e);
