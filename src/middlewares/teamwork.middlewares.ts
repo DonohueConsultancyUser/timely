@@ -5,21 +5,17 @@ import { IRequest } from "../interfaces";
 export const teamworkMiddlewares = {
   getPersonByEmail: async (req: IRequest, res: Response, next: NextFunction) => {
     try {
-      console.log("getPersonByEmail");
-
       const { data } = await teamworkService.getPeople();
 
       const people = data.people;
       if (!req.hours) {
         throw new Error("Hours data not generated");
       }
-      console.log("getPersonByEmail, peopl", people);
 
       const person = people.find((person) => person["email-address"] === req.hours?.userEmail);
       if (!person) {
         throw new Error("User not found");
       }
-      console.log("getPersonByEmail, person", person);
 
       req.userId = +person.id;
 
@@ -46,12 +42,9 @@ export const teamworkMiddlewares = {
 
   getProjectByName: async (req: IRequest, res: Response, next: NextFunction) => {
     try {
-      console.log("getProectByName");
-
       const { data } = await teamworkService.getProjects();
 
       const project = data.projects.find((project) => project.name === req.hours?.projectName);
-      console.log("getProjectByName", project);
 
       if (project) {
         req.projectId = +project.id;
@@ -77,8 +70,6 @@ export const teamworkMiddlewares = {
 
   createHours: async (req: IRequest, res: Response, next: NextFunction) => {
     try {
-      console.log("createHours");
-
       if (!req.hours) {
         throw new Error(" Hours not generated");
       }
@@ -98,7 +89,6 @@ export const teamworkMiddlewares = {
           userId: req.userId,
         },
       };
-      console.log("createHours", dataForCreate);
 
       await teamworkService.createHours(dataForCreate, req.projectId);
       next();
