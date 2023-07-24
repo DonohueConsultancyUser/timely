@@ -233,9 +233,11 @@ export const timelyMiddlewares = {
       const code = req.query.code as string;
       await dataSourse.manager.delete(Tokens, {});
 
-      const { data } = await timelyService.getTokens(code);
+      const data = await timelyService.getTokens(code);
 
-      await dataSourse.manager.save(Tokens, { access_token: data.access_token, refresh_token: data.refresh_token });
+      console.log(data);
+
+      await dataSourse.manager.save(Tokens, { access_token: data.data.access_token, refresh_token: data.data.refresh_token });
 
       next();
     } catch (e) {
